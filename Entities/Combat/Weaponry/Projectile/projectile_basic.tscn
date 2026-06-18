@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://4nq4tuv6qo8r"]
+
+[ext_resource type="Script" uid="uid://m3l7ktuiecrs" path="res://Entities/Combat/Weaponry/Projectile/projectile.gd" id="1_r7q6e"]
+[ext_resource type="Resource" uid="uid://bovxsvjk022k8" path="res://Entities/Combat/Weaponry/Projectile/default_projectile.tres" id="2_rfiej"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hrh8a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bovvc"]
+radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ulkw"]
+albedo_color = Color(0, 1, 0, 1)
+
+[node name="Projectile" type="AnimatableBody3D" unique_id=799236944]
+collision_layer = 8
+collision_mask = 0
+sync_to_physics = false
+script = ExtResource("1_r7q6e")
+spec = ExtResource("2_rfiej")
+metadata/_custom_type_script = "uid://m3l7ktuiecrs"
+
+[node name="OverlapCollision" type="CollisionShape3D" parent="." unique_id=1829488299]
+transform = Transform3D(1, 0, 0, 0, 0, 0.99999994, 0, -0.99999994, 0, 0, 0, -1)
+shape = SubResource("CapsuleShape3D_hrh8a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OverlapCollision" unique_id=1163283105]
+mesh = SubResource("CapsuleMesh_bovvc")
+surface_material_override/0 = SubResource("StandardMaterial3D_1ulkw")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=231276078]
+transform = Transform3D(1, 0, 0, 0, 0, 0.99999994, 0, -0.99999994, 0, 0, 0, -1)
+collision_layer = 4
+collision_mask = 4
+
+[node name="OverlapCollision" type="CollisionShape3D" parent="Area3D" unique_id=485521240]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_hrh8a")
+
+[connection signal="area_entered" from="Area3D" to="." method="area_entered"]
+[connection signal="area_shape_entered" from="Area3D" to="." method="area_shape_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="body_entered"]
+[connection signal="body_shape_entered" from="Area3D" to="." method="body_shape_entered"]

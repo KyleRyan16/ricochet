@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dij62mke3khx8"]
+
+[ext_resource type="Script" uid="uid://c576h6slnpcke" path="res://player_character.gd" id="1_02ohv"]
+[ext_resource type="Script" uid="uid://dje38v5f3r2us" path="res://aim_solver.gd" id="1_5up26"]
+[ext_resource type="Script" uid="uid://dor1ai1n7igx0" path="res://weapon_user.gd" id="3_0hvvw"]
+[ext_resource type="Script" uid="uid://blfr2xb316wb5" path="res://weapon_projectile.gd" id="4_0hvvw"]
+[ext_resource type="PackedScene" uid="uid://4nq4tuv6qo8r" path="res://projectile_basic.tscn" id="5_6qc1w"]
+[ext_resource type="Resource" uid="uid://bovxsvjk022k8" path="res://default_projectile.tres" id="6_uuvki"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tfo3t"]
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02ohv"]
+height = 1.8
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5up26"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6qc1w"]
+
+[node name="PlayerCharacter" type="Node3D" unique_id=122810033]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1121269279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+script = ExtResource("1_02ohv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=712686711]
+mesh = SubResource("CapsuleMesh_tfo3t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1733719610]
+shape = SubResource("CapsuleShape3D_02ohv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D" unique_id=877310445]
+transform = Transform3D(0.20421684, 0, 0, 0, -4.371139e-08, 0.20421684, 0, -1, -8.926602e-09, 0, 0.100000024, 1.0317973)
+mesh = SubResource("CylinderMesh_5up26")
+
+[node name="ProjectileSpawnpoint" type="Node3D" parent="CharacterBody3D" unique_id=142082352]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.13882947, 2.5397096)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CharacterBody3D/ProjectileSpawnpoint" unique_id=1339249613]
+mesh = SubResource("SphereMesh_6qc1w")
+
+[node name="AimSolver" type="Node" parent="." unique_id=1083339505]
+script = ExtResource("1_5up26")
+metadata/_custom_type_script = "uid://dje38v5f3r2us"
+
+[node name="WeaponUser" type="Node" parent="." unique_id=1013672162]
+script = ExtResource("3_0hvvw")
+metadata/_custom_type_script = "uid://dor1ai1n7igx0"
+
+[node name="ProjectileWeapon" type="Node" parent="WeaponUser" unique_id=1299432537 node_paths=PackedStringArray("spawn_transform")]
+script = ExtResource("4_0hvvw")
+projectile_scene = ExtResource("5_6qc1w")
+spawn_transform = NodePath("../../CharacterBody3D/ProjectileSpawnpoint")
+projectile_spec = ExtResource("6_uuvki")
+metadata/_custom_type_script = "uid://blfr2xb316wb5"

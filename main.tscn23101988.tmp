@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://3dyud1wiho01"]
+
+[ext_resource type="PackedScene" uid="uid://cutshdoax8unr" path="res://geo_plane.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dij62mke3khx8" path="res://player_character.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dj8jfdiom0xol" path="res://geo_cube.tscn" id="3_h2yge"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_0xm2m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Node3D" type="Node3D" unique_id=1785451705]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2110993505]
+transform = Transform3D(0.7071068, 0.61237246, -0.35355338, 0, 0.49999997, 0.86602545, 0.7071068, -0.61237246, 0.35355338, 0, 6.4850245, 0)
+
+[node name="BasicGeo" parent="." unique_id=869327778 instance=ExtResource("1_0xm2m")]
+transform = Transform3D(21.77841, 0, 0, 0, 1, 0, 0, 0, 23.838337, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1303708489]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 11.464214, 9.380325)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1278457561]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.9433818, 0, -1.3199528)
+mesh = SubResource("PrismMesh_0xm2m")
+surface_material_override/0 = SubResource("StandardMaterial3D_h2yge")
+
+[node name="PlayerCharacter" parent="." unique_id=122810033 instance=ExtResource("2_h2yge")]
+
+[node name="BasicGeo2" parent="." unique_id=864478052 instance=ExtResource("3_h2yge")]
+transform = Transform3D(5.499777, 0, -0.54454064, 0, 2.934044, 0, 5.499777, 0, 0.54454064, 3.8469152, 9.536743e-07, -3.911971)
+
+[node name="BasicGeo3" parent="." unique_id=1689177251 instance=ExtResource("3_h2yge")]
+transform = Transform3D(7.7778587, 0, 0, 0, 2.934044, 0, 0, 0, 0.7700968, -1.4498124, 0, -5.832657)
+
+[node name="BasicGeo4" parent="." unique_id=835406633 instance=ExtResource("3_h2yge")]
+transform = Transform3D(3.739634, 0, 0.675242, 0, 2.9340441, 0, -6.8198414, 0, 0.3702665, -6.703258, -9.536743e-07, -2.6543446)
