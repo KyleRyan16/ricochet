@@ -5,7 +5,7 @@ class_name WeaponUser
 # Uses a weapon to attack
 
 # TODO: support multiple weapons
-@onready var weapon : Weapon = $ProjectileWeapon
+@export var weapon : Weapon = null
 	
 func attack():
 	weapon.attack()

@@ -35,7 +35,10 @@ transform = Transform3D(1.2783611, 0, -0.7596239, 0, 2.934044, 0, 7.672084, 0, 0
 transform = Transform3D(7.7778587, 0, 0, 0, 2.934044, 0, 0, 0, 0.7700968, -1.4498124, 0, -5.832657)
 
 [node name="BasicGeo4" parent="." unique_id=835406633 instance=ExtResource("3_h2yge")]
-transform = Transform3D(3.739634, 0, 0.675242, 0, 2.9340441, 0, -6.8198414, 0, 0.3702665, -6.703258, -9.536743e-07, -2.6543446)
+transform = Transform3D(3.739634, 0, 0.675242, 0, 2.9340441, 0, -6.8198414, 0, 0.3702665, -7.0223866, -9.536743e-07, -2.5148516)
+
+[node name="BasicGeo5" parent="." unique_id=870301421 instance=ExtResource("3_h2yge")]
+transform = Transform3D(-5.6195726, 0, 0.5324154, 0, 2.9340441, 0, -5.3773136, 0, -0.55640167, -6.19779, -5.684342e-14, 3.5951915)
 
 [node name="HostileHumanoid" parent="." unique_id=1808762767 instance=ExtResource("4_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.530302, 0, -1.1295586)

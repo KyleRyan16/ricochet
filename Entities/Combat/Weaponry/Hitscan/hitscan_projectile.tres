@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ProjectileSpec" format=3 uid="uid://bsnqnnivure2u"]
+
+[ext_resource type="PackedScene" uid="uid://bqthoup17acjk" path="res://Entities/Combat/Weaponry/Hitscan/projectile_hitscan.tscn" id="1_dfr3b"]
+[ext_resource type="Script" uid="uid://bil1l28ox7vnb" path="res://Entities/Combat/Weaponry/Projectile/projectile_spec.gd" id="1_eintp"]
+
+[resource]
+script = ExtResource("1_eintp")
+distance = 20.0
+max_bounces = 3
+projectile_scene = ExtResource("1_dfr3b")
+metadata/_custom_type_script = "uid://bil1l28ox7vnb"

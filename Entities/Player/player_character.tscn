@@ -4,8 +4,7 @@
 [ext_resource type="Script" uid="uid://dje38v5f3r2us" path="res://Entities/Combat/aim_solver.gd" id="1_5up26"]
 [ext_resource type="Script" uid="uid://dor1ai1n7igx0" path="res://Entities/Combat/weapon_user.gd" id="3_0hvvw"]
 [ext_resource type="Script" uid="uid://blfr2xb316wb5" path="res://Entities/Combat/Weaponry/Projectile/weapon_projectile.gd" id="4_0hvvw"]
-[ext_resource type="PackedScene" uid="uid://4nq4tuv6qo8r" path="res://Entities/Combat/Weaponry/Projectile/projectile_basic.tscn" id="5_6qc1w"]
-[ext_resource type="Resource" uid="uid://bovxsvjk022k8" path="res://Entities/Combat/Weaponry/Projectile/default_projectile.tres" id="6_uuvki"]
+[ext_resource type="Resource" uid="uid://bsnqnnivure2u" path="res://Entities/Combat/Weaponry/Hitscan/hitscan_projectile.tres" id="5_stcdd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tfo3t"]
 height = 1.8
@@ -22,7 +21,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_02ohv")
-aim_simulation_bounces = 1
+aim_distance_simulation = 25.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=712686711]
 mesh = SubResource("CapsuleMesh_tfo3t")
@@ -41,13 +40,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11715472, -0.68451905)
 script = ExtResource("1_5up26")
 metadata/_custom_type_script = "uid://dje38v5f3r2us"
 
-[node name="WeaponUser" type="Node" parent="." unique_id=1013672162]
+[node name="WeaponUser" type="Node" parent="." unique_id=1013672162 node_paths=PackedStringArray("weapon")]
 script = ExtResource("3_0hvvw")
+weapon = NodePath("ProjectileWeapon")
 metadata/_custom_type_script = "uid://dor1ai1n7igx0"
 
 [node name="ProjectileWeapon" type="Node" parent="WeaponUser" unique_id=1299432537 node_paths=PackedStringArray("spawn_transform")]
 script = ExtResource("4_0hvvw")
-projectile_scene = ExtResource("5_6qc1w")
 spawn_transform = NodePath("../../CharacterBody3D/ProjectileSpawn")
-projectile_spec = ExtResource("6_uuvki")
+projectile_spec = ExtResource("5_stcdd")
 metadata/_custom_type_script = "uid://blfr2xb316wb5"

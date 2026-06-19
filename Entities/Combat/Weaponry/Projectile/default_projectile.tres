@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="ProjectileSpec" format=3 uid="uid://bovxsvjk022k8"]
 
 [ext_resource type="Script" uid="uid://bil1l28ox7vnb" path="res://Entities/Combat/Weaponry/Projectile/projectile_spec.gd" id="1_5rx73"]
+[ext_resource type="PackedScene" uid="uid://4nq4tuv6qo8r" path="res://Entities/Combat/Weaponry/Projectile/projectile_basic.tscn" id="1_k70py"]
 
 [resource]
 script = ExtResource("1_5rx73")
-speed = 30.0
 max_bounces = 2
+projectile_scene = ExtResource("1_k70py")
 metadata/_custom_type_script = "uid://bil1l28ox7vnb"

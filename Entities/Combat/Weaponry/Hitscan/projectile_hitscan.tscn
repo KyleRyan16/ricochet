@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bqthoup17acjk"]
+
+[ext_resource type="Script" uid="uid://dsxgy27m0iivf" path="res://Entities/Combat/Weaponry/Hitscan/projectile_hitscan.gd" id="1_jk37d"]
+
+[node name="HitscanProjectile" type="Node3D" unique_id=1277620059]
+script = ExtResource("1_jk37d")
+metadata/_custom_type_script = "uid://dsxgy27m0iivf"
