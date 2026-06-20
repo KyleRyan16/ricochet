@@ -1,0 +1,36 @@
+[gd_scene format=4 uid="uid://c16r7urmci7tf"]
+
+[ext_resource type="Script" uid="uid://bracq2uud68aw" path="res://sense_sight.gd" id="1_k828j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k828j"]
+radius = 5.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_k828j"]
+_surfaces = [{
+"aabb": AABB(-4.531539, 0, -5, 9.063078, 1e-05, 5),
+"format": 34359738369,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAAAAXgKRwAAAAADjPAfAO7eBwAAAAABhVjvAAAAAAAAAAAAAAAAAO7eBwAAAAABhVjvA6phbwAAAAABzwmjAAAAAAAAAAAAAAAAA6phbwAAAAABzwmjAle8rwAAAAABQ8YbAAAAAAAAAAAAAAAAAle8rwAAAAABQ8YbAvErsvwAAAAATspTAAAAAAAAAAAAAAAAAvErsvwAAAAATspTAXJRwvwAAAAAEJp3AAAAAAAAAAAAAAAAAXJRwvwAAAAAEJp3AAADIJgAAAAAAAKDAAAAAAAAAAAAAAAAAAADIJgAAAAAAAKDAXJRwPwAAAAAEJp3AAAAAAAAAAAAAAAAAXJRwPwAAAAAEJp3AvErsPwAAAAATspTAAAAAAAAAAAAAAAAAvErsPwAAAAATspTAle8rQAAAAABQ8YbAAAAAAAAAAAAAAAAAle8rQAAAAABQ8YbA6phbQAAAAABzwmjAAAAAAAAAAAAAAAAA6phbQAAAAABzwmjAO7eBQAAAAABhVjvAAAAAAAAAAAAAAAAAO7eBQAAAAABhVjvAXgKRQAAAAADjPAfA")
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k828j"]
+albedo_color = Color(1, 0, 1, 1)
+
+[node name="Sight" type="Area3D" unique_id=1165751035]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_k828j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=665333829]
+shape = SubResource("SphereShape3D_k828j")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1293957097]
+mesh = SubResource("ArrayMesh_k828j")
+surface_material_override/0 = SubResource("StandardMaterial3D_k828j")
+
+[connection signal="body_entered" from="." to="." method="body_entered"]
+[connection signal="body_exited" from="." to="." method="body_exited"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]

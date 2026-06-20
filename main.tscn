@@ -17,6 +17,7 @@ transform = Transform3D(0.7071068, 0.61237246, -0.35355338, 0, 0.49999997, 0.866
 
 [node name="BasicGeo" parent="." unique_id=869327778 instance=ExtResource("1_0xm2m")]
 transform = Transform3D(21.77841, 0, 0, 0, 1, 0, 0, 0, 23.838337, 0, 0, 0)
+visible = false
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1303708489]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 11.464214, 9.380325)
@@ -27,6 +28,7 @@ mesh = SubResource("PrismMesh_0xm2m")
 surface_material_override/0 = SubResource("StandardMaterial3D_h2yge")
 
 [node name="PlayerCharacter" parent="." unique_id=122810033 instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.448348, 0, 4.9541745)
 
 [node name="BasicGeo2" parent="." unique_id=864478052 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1.2783611, 0, -0.7596239, 0, 2.934044, 0, 7.672084, 0, 0.12657233, 3.2378392, 5.684342e-14, -1.7491462)
@@ -41,10 +43,4 @@ transform = Transform3D(3.739634, 0, 0.675242, 0, 2.9340441, 0, -6.8198414, 0, 0
 transform = Transform3D(-5.6195726, 0, 0.5324154, 0, 2.9340441, 0, -5.3773136, 0, -0.55640167, -6.19779, -5.684342e-14, 3.5951915)
 
 [node name="HostileHumanoid" parent="." unique_id=1808762767 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.530302, 0, -1.1295586)
-
-[node name="HostileHumanoid3" parent="." unique_id=606044521 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.762697, 0, 0.40758038)
-
-[node name="HostileHumanoid4" parent="." unique_id=1736788043 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.273695, 0, -3.1208086)
+transform = Transform3D(-0.25881904, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881904, -3.8871021, 0, 2.5826907)

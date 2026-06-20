@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://cran6pes5ikt0"]
 
 [ext_resource type="Script" uid="uid://cbllv2f4adyoi" path="res://Entities/interactable_entity.gd" id="1_m16um"]
+[ext_resource type="PackedScene" uid="uid://c16r7urmci7tf" path="res://sense_sight.tscn" id="2_4dqoh"]
+[ext_resource type="Script" uid="uid://dor1ai1n7igx0" path="res://Entities/Combat/weapon_user.gd" id="3_mdbcs"]
+[ext_resource type="Script" uid="uid://blfr2xb316wb5" path="res://Entities/Combat/Weaponry/Projectile/weapon_projectile.gd" id="4_tmm4x"]
+[ext_resource type="Resource" uid="uid://bovxsvjk022k8" path="res://Entities/Combat/Weaponry/Projectile/default_projectile.tres" id="5_tmm4x"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mpfnf"]
 height = 1.8
@@ -32,3 +36,21 @@ debug_color = Color(0.54901963, 0, 0.08627451, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_mpfnf")
 debug_color = Color(0.54901963, 0, 0.08627451, 1)
+
+[node name="Sight" parent="." unique_id=1165751035 instance=ExtResource("2_4dqoh")]
+
+[node name="ProjectileSpawnPoint" type="Node3D" parent="." unique_id=805884002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.5365993)
+
+[node name="WeaponUser" type="Node" parent="." unique_id=1728510049 node_paths=PackedStringArray("weapon")]
+script = ExtResource("3_mdbcs")
+weapon = NodePath("ProjectileWeapon")
+metadata/_custom_type_script = "uid://dor1ai1n7igx0"
+
+[node name="ProjectileWeapon" type="Node" parent="WeaponUser" unique_id=1761887025 node_paths=PackedStringArray("spawn_transform")]
+script = ExtResource("4_tmm4x")
+spawn_transform = NodePath("../../ProjectileSpawnPoint")
+projectile_spec = ExtResource("5_tmm4x")
+metadata/_custom_type_script = "uid://blfr2xb316wb5"
+
+[connection signal="entity_sight_updated" from="Sight" to="." method="entity_sight_updated"]

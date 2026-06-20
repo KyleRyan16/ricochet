@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dje38v5f3r2us" path="res://Entities/Combat/aim_solver.gd" id="1_5up26"]
 [ext_resource type="Script" uid="uid://dor1ai1n7igx0" path="res://Entities/Combat/weapon_user.gd" id="3_0hvvw"]
 [ext_resource type="Script" uid="uid://blfr2xb316wb5" path="res://Entities/Combat/Weaponry/Projectile/weapon_projectile.gd" id="4_0hvvw"]
-[ext_resource type="Resource" uid="uid://bsnqnnivure2u" path="res://Entities/Combat/Weaponry/Hitscan/hitscan_projectile.tres" id="5_stcdd"]
+[ext_resource type="Resource" uid="uid://bovxsvjk022k8" path="res://Entities/Combat/Weaponry/Projectile/default_projectile.tres" id="5_stcdd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tfo3t"]
 height = 1.8
@@ -18,7 +18,7 @@ height = 1.8
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1121269279]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-collision_layer = 5
+collision_layer = 13
 collision_mask = 5
 script = ExtResource("1_02ohv")
 aim_distance_simulation = 25.0
