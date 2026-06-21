@@ -8,9 +8,9 @@ class_name AimSolver
 class TrajectoryResult:
 	var movements : Array[Vector3] 
 	var bounces : int = 0
-	static func Init(max_bounces : int) -> TrajectoryResult:
+	static func Init(max_ricochets : int) -> TrajectoryResult:
 		var result = TrajectoryResult.new()
-		result.bounces = max_bounces
+		result.bounces = max_ricochets
 		return result
 	
 	

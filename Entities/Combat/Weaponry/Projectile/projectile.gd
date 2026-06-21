@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func init(new_spec : ProjectileSpec):
 	spec = new_spec
-	bounces = spec.max_bounces
+	bounces = spec.max_ricochets
 	set_physics_process(true)
 
 func _physics_process(delta: float) -> void:

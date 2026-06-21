@@ -6,9 +6,6 @@ class_name ProjectileWeapon
 
 @export var projectile_spec : ProjectileSpec = null
 
-# speed in units/sec the projectile travels at
-var speed : float = 10
-
 func attack():
 	fire()
 	pass
