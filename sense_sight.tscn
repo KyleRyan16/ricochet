@@ -19,19 +19,19 @@ _surfaces = [{
 albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_helvd"]
+radius = 10.0
 
 [node name="Sight" type="Area3D" unique_id=1165751035]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_k828j")
-inner_radius = null
-outer_radius = null
 
 [node name="InnerRadius" type="CollisionShape3D" parent="." unique_id=665333829]
 shape = SubResource("SphereShape3D_k828j")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1293957097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 mesh = SubResource("ArrayMesh_k828j")
 surface_material_override/0 = SubResource("StandardMaterial3D_k828j")
 

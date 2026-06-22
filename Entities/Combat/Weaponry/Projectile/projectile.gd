@@ -45,7 +45,6 @@ func area_entered(area: Area3D) -> void:
 	print(area)
 	if area.has_method("projectile_hit"):
 		area.projectile_hit(self)
-		var parent = area.get_parent_node_3d()
 	
 	var parent = area.get_parent_node_3d()
 	if parent && parent.has_method("projectile_hit"):

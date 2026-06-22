@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cran6pes5ikt0"]
 
-[ext_resource type="Script" uid="uid://cbllv2f4adyoi" path="res://Entities/interactable_entity.gd" id="1_m16um"]
+[ext_resource type="Script" uid="uid://iilviohproc2" path="res://Entities/NPC/Hostile/generic_enemy.gd" id="1_tmm4x"]
 [ext_resource type="PackedScene" uid="uid://c16r7urmci7tf" path="res://sense_sight.tscn" id="2_4dqoh"]
 [ext_resource type="Script" uid="uid://dor1ai1n7igx0" path="res://Entities/Combat/weapon_user.gd" id="3_mdbcs"]
 [ext_resource type="Script" uid="uid://blfr2xb316wb5" path="res://Entities/Combat/Weaponry/Projectile/weapon_projectile.gd" id="4_tmm4x"]
@@ -16,7 +16,7 @@ albedo_color = Color(1, 0.25490198, 0, 1)
 height = 1.8
 
 [node name="HostileHumanoid" type="CharacterBody3D" unique_id=1808762767]
-script = ExtResource("1_m16um")
+script = ExtResource("1_tmm4x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=987335457]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -41,6 +41,8 @@ debug_color = Color(0.54901963, 0, 0.08627451, 1)
 
 [node name="ProjectileSpawnPoint" type="Node3D" parent="." unique_id=805884002]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.5365993)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=535924759]
 
 [node name="WeaponUser" type="Node" parent="." unique_id=1728510049 node_paths=PackedStringArray("weapon")]
 script = ExtResource("3_mdbcs")

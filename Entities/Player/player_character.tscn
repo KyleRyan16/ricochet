@@ -14,26 +14,23 @@ height = 1.8
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_5up26"]
 
-[node name="PlayerCharacter" type="Node3D" unique_id=122810033]
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1121269279]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+[node name="PlayerCharacter" type="CharacterBody3D" unique_id=1121269279]
 collision_layer = 13
 collision_mask = 5
 script = ExtResource("1_02ohv")
 aim_distance_simulation = 25.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=712686711]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=712686711]
 mesh = SubResource("CapsuleMesh_tfo3t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1733719610]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1733719610]
 shape = SubResource("CapsuleShape3D_02ohv")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D" unique_id=877310445]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=877310445]
 transform = Transform3D(0.20421684, 0, 0, 0, -4.371139e-08, -0.20421684, 0, 1, -8.926602e-09, 0, 0.09999992, -1.436191)
 mesh = SubResource("CylinderMesh_5up26")
 
-[node name="ProjectileSpawn" type="Node3D" parent="CharacterBody3D" unique_id=370264257]
+[node name="ProjectileSpawn" type="Node3D" parent="." unique_id=370264257]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11715472, -0.68451905)
 
 [node name="AimSolver" type="Node" parent="." unique_id=1083339505]
@@ -47,6 +44,6 @@ metadata/_custom_type_script = "uid://dor1ai1n7igx0"
 
 [node name="ProjectileWeapon" type="Node" parent="WeaponUser" unique_id=1299432537 node_paths=PackedStringArray("spawn_transform")]
 script = ExtResource("4_0hvvw")
-spawn_transform = NodePath("../../CharacterBody3D/ProjectileSpawn")
+spawn_transform = NodePath("../../ProjectileSpawn")
 projectile_spec = ExtResource("5_stcdd")
 metadata/_custom_type_script = "uid://blfr2xb316wb5"

@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("1_5rx73")
-distance = 2.0
-max_bounces = 2
+distance = 8.0
 projectile_scene = ExtResource("1_k70py")
 metadata/_custom_type_script = "uid://bil1l28ox7vnb"

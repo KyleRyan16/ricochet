@@ -2,7 +2,6 @@ extends Node
 
 class_name AimSolver
 
-@onready var player : CharacterBody3D = $"../CharacterBody3D"
 @onready var camera : Camera3D = $"../../Camera3D"
 
 class TrajectoryResult:

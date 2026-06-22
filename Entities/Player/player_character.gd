@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-@onready var aim_solver : AimSolver = $"../AimSolver"
-@onready var weapon_user : WeaponUser = $"../WeaponUser"
+@onready var aim_solver : AimSolver = $AimSolver
+@onready var weapon_user : WeaponUser = $WeaponUser
 
 @export var aim_distance_simulation : float = 15
 @export var aim_simulation_bounces : int = 3
