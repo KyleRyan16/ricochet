@@ -2,7 +2,7 @@ extends Node
 
 class_name AimSolver
 
-@onready var camera : Camera3D = $"../../Camera3D"
+@onready var camera : Camera3D = $"../../../Camera3D"
 
 class TrajectoryResult:
 	var movements : Array[Vector3] 

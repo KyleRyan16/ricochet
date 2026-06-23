@@ -29,9 +29,11 @@ script = ExtResource("1_k828j")
 [node name="InnerRadius" type="CollisionShape3D" parent="." unique_id=665333829]
 shape = SubResource("SphereShape3D_k828j")
 debug_color = Color(0, 0.6, 0.69803923, 1)
+debug_fill = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1293957097]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+gi_mode = 2
 mesh = SubResource("ArrayMesh_k828j")
 surface_material_override/0 = SubResource("StandardMaterial3D_k828j")
 

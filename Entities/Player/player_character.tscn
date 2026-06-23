@@ -9,6 +9,9 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tfo3t"]
 height = 1.8
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stcdd"]
+albedo_color = Color(0, 0, 0.7058824, 1)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02ohv"]
 height = 1.8
 
@@ -22,6 +25,7 @@ aim_distance_simulation = 25.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=712686711]
 mesh = SubResource("CapsuleMesh_tfo3t")
+surface_material_override/0 = SubResource("StandardMaterial3D_stcdd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1733719610]
 shape = SubResource("CapsuleShape3D_02ohv")
@@ -30,8 +34,8 @@ shape = SubResource("CapsuleShape3D_02ohv")
 transform = Transform3D(0.20421684, 0, 0, 0, -4.371139e-08, -0.20421684, 0, 1, -8.926602e-09, 0, 0.09999992, -1.436191)
 mesh = SubResource("CylinderMesh_5up26")
 
-[node name="ProjectileSpawn" type="Node3D" parent="." unique_id=370264257]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11715472, -0.68451905)
+[node name="ProjectileSpawn" type="Node3D" parent="MeshInstance3D2" unique_id=370264257]
+transform = Transform3D(4.8967557, 0, 0, 0, -4.371139e-08, 1, 0, -4.8967557, -2.1404401e-07, 0, 0.7516719, -0.08400303)
 
 [node name="AimSolver" type="Node" parent="." unique_id=1083339505]
 script = ExtResource("1_5up26")
@@ -44,6 +48,6 @@ metadata/_custom_type_script = "uid://dor1ai1n7igx0"
 
 [node name="ProjectileWeapon" type="Node" parent="WeaponUser" unique_id=1299432537 node_paths=PackedStringArray("spawn_transform")]
 script = ExtResource("4_0hvvw")
-spawn_transform = NodePath("../../ProjectileSpawn")
+spawn_transform = NodePath("../../MeshInstance3D2/ProjectileSpawn")
 projectile_spec = ExtResource("5_stcdd")
 metadata/_custom_type_script = "uid://blfr2xb316wb5"

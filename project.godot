@@ -13,7 +13,7 @@ config_version=5
 config/name="ricochet"
 run/main_scene="uid://3dyud1wiho01"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-run/max_fps=60
+run/max_fps=120
 
 [audio]
 
@@ -40,5 +40,3 @@ common/physics_jitter_fix=0.0
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
