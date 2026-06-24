@@ -23,18 +23,35 @@ func get_mouse_aim_position(from : Vector3) -> Vector3:
 	
 	return mouse_from + mouse_dir * length_from_mouse
 
+static func find_blocking(entity : Node3D, from : Vector3, to : Vector3, debug_draw : bool = false) -> Vector3:
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	query.exclude.append(entity)
+	query.collision_mask = 1 << 1
+	
+	
+	
+	var space_state = entity.get_world_3d().direct_space_state
+	
+	var result := space_state.intersect_ray(query)
+	
+	if !result || !result.collider:
+		if debug_draw: DebugDraw3D.draw_arrow(from, to, Color.YELLOW, 0.25, true)
+		return to
+	if debug_draw: DebugDraw3D.draw_arrow(from, result.position, Color.YELLOW, 0.25, true)
+	return result.position
 
-static func simulate_trajectory(from : Node3D, direction : Vector3, distance : float, trajectory_result : TrajectoryResult):
+
+static func simulate_trajectory(entity : Node3D, from : Vector3, direction : Vector3, distance : float, trajectory_result : TrajectoryResult):
 	
-	var current_position = from.global_position
+	var current_position = from
 	
-	var space_state = from.get_world_3d().direct_space_state
+	var space_state = entity.get_world_3d().direct_space_state
 
 	while distance > 0 && trajectory_result.bounces >= 0:
 		
 		var end = current_position + direction * distance
 		var query = PhysicsRayQueryParameters3D.create(current_position, end)
-		query.exclude.append(from)
+		query.exclude.append(entity)
 		query.collision_mask = 1 << 1
 		
 		var result := space_state.intersect_ray(query)

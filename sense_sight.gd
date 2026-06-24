@@ -49,20 +49,32 @@ func construct_vision_field(new_fov: float, new_inner: float, new_outer: float, 
 	var step : float = deg_to_rad(fov * 1/subdivisions)
 	var rad : float = deg_to_rad(-fov / 2)
 	
+	var global_pos := visual_cone.global_position
+	
 	var previous = get_point_position(rad)
+	var global_previous : Vector3 = previous.rotated(global_transform.basis.y, global_transform.basis.get_euler().y) + global_pos
 
 	var center := Vector3.ZERO
+	var global_center : Vector3 = center.rotated(global_transform.basis.y, global_transform.basis.get_euler().y) + global_pos
 	
+	previous = (AimSolver.find_blocking(self, global_center, global_previous) - global_pos).rotated(global_transform.basis.y, -global_transform.basis.get_euler().y)
+
 	surface.begin(Mesh.PRIMITIVE_TRIANGLES)
 
 	for i in range(subdivisions):
 		rad += step
 		var current : Vector3 = get_point_position(rad)
+		var global_current : Vector3 = current.rotated(global_transform.basis.y, global_transform.basis.get_euler().y) + global_pos
+		
 		surface.add_vertex(center)
 		surface.add_vertex(previous)
+		
+		current = (AimSolver.find_blocking(self, global_center, global_current) - global_pos).rotated(global_transform.basis.y, -global_transform.basis.get_euler().y)
+		
+		
 		surface.add_vertex(current)
 		previous = current
-
+		
 	visual_cone.mesh = surface.commit()
 	
 func get_point_position(angle_rad : float) -> Vector3:
@@ -117,6 +129,8 @@ func _physics_process(delta: float) -> void:
 			DebugDraw3D.draw_sphere(result.position, 0.5, Color.RED)
 		DebugDraw3D.draw_arrow(start, result.position, Color.BLUE, 0.5, true)
 
+func _process(delta: float) -> void:
+	construct_vision_field(fov, inner_radius, outer_radius, subdivisions)
 
 func body_entered(body: Node3D) -> void:
 	detectable_entities[body.get_instance_id()] = VisionStatus.create(body)

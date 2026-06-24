@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ProjectileSpec" format=3 uid="uid://bchltyhfw0omo"]
+
+[ext_resource type="PackedScene" uid="uid://cj3trsb7y2c23" path="res://laser_path.tscn" id="1_vr2jd"]
+[ext_resource type="Script" uid="uid://bil1l28ox7vnb" path="res://Entities/Combat/Weaponry/Projectile/projectile_spec.gd" id="2_gur5h"]
+
+[resource]
+script = ExtResource("2_gur5h")
+distance = 5.0
+max_ricochets = 3
+projectile_scene = ExtResource("1_vr2jd")
+metadata/_custom_type_script = "uid://bil1l28ox7vnb"

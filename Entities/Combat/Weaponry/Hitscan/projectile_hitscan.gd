@@ -8,7 +8,7 @@ class_name HitscanProjectile
 # Called when the node enters the scene tree for the first time.
 func init(new_spec : ProjectileSpec) -> void:
 	var result : AimSolver.TrajectoryResult = AimSolver.TrajectoryResult.Init(new_spec.max_ricochets)
-	AimSolver.simulate_trajectory(self, -basis.z, new_spec.distance, result)
+	AimSolver.simulate_trajectory(self, global_position, -basis.z, new_spec.distance, result)
 	var position : Vector3 = global_position
 	for move in result.movements:
 		var end : Vector3 = position + move

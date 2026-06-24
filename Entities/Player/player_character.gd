@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 	
 	look_at(aim_position, Vector3.DOWN)
 	var result : AimSolver.TrajectoryResult = AimSolver.TrajectoryResult.Init(aim_simulation_bounces)
-	AimSolver.simulate_trajectory(self, -basis.z, aim_distance_simulation, result)
+	AimSolver.simulate_trajectory(self, global_position, -basis.z, aim_distance_simulation, result)
 	
 	var start_position = global_position
 	for move in result.movements:
