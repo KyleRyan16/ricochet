@@ -17,17 +17,17 @@ class VisionStatus:
 @onready var inner : CollisionShape3D = $InnerRadius
 @onready var outer : CollisionShape3D = $OuterRadius
 
-@onready var visual_cone : MeshInstance3D = $MeshInstance3D
+@onready var visual_cone : MeshInstance3D = $VisualCone
 
 @onready var inner_shape : SphereShape3D = inner.shape as SphereShape3D
 @onready var outer_shape : SphereShape3D = outer.shape as SphereShape3D
 
-@export var fov : float = 130
+@export var fov : float = 60
 @export var inner_radius : float = 5
 @export var outer_radius : float = 10
 @export var subdivisions : int = 12
 
-@export var sight_mask : int = 1
+@export_flags_3d_physics var sight_mask : int = 0
 
 # entities in range that aren't necessarily detected
 var detectable_entities : Dictionary[int, VisionStatus]
@@ -105,8 +105,7 @@ func _physics_process(delta: float) -> void:
 		
 		var start = Vector3(global_position.x, entity.global_position.y, global_position.z)
 		var end = entity.global_position
-		var mask : int = 1 << sight_mask - 1
-		var query = PhysicsRayQueryParameters3D.create(start, end, mask, [self])
+		var query = PhysicsRayQueryParameters3D.create(start, end, sight_mask, [self])
 		
 		var result := space.intersect_ray(query)
 		
