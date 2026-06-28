@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bqelyhsukkrsw"]
 
 [ext_resource type="Script" uid="uid://3hrcu5gsl7dc" path="res://Entities/Combat/Weaponry/Projectile/laser_segment.gd" id="1_qah4g"]
-[ext_resource type="Shader" uid="uid://ec0ik4qysm04" path="res://Entities/Combat/Weaponry/Projectile/laser_projectile.gdshader" id="2_lu8bi"]
+[ext_resource type="Material" uid="uid://dipiuo3levvh0" path="res://laser_mat.tres" id="2_lu8bi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qah4g"]
 resource_local_to_scene = true
@@ -9,24 +9,34 @@ height = 1.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dhd34"]
 resource_local_to_scene = true
+material = ExtResource("2_lu8bi")
 height = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wdeng"]
-render_priority = 0
-shader = ExtResource("2_lu8bi")
-shader_parameter/albedo = Color(1, 0, 0, 1)
-shader_parameter/albedo_texture_size = Vector2i(0, 0)
-shader_parameter/point_size = 0.0
-shader_parameter/roughness = 0.0
-shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
-shader_parameter/specular = 0.0
-shader_parameter/metallic = 0.0
-shader_parameter/emission = Color(1, 0, 0, 1)
-shader_parameter/emission_energy = 29.99999932944
-shader_parameter/uv1_scale = Vector3(0, 0, 0)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(0, 0, 0)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
+[sub_resource type="SphereMesh" id="SphereMesh_lu8bi"]
+resource_local_to_scene = true
+material = ExtResource("2_lu8bi")
+
+[sub_resource type="Curve" id="Curve_wdeng"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999994, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8wkt6"]
+curve = SubResource("Curve_wdeng")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lu8bi"]
+lifetime_randomness = 0.5
+spread = 180.0
+initial_velocity_min = 6.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_8wkt6")
+
+[sub_resource type="SphereMesh" id="SphereMesh_wdeng"]
+material = ExtResource("2_lu8bi")
+radius = 0.1
+height = 0.2
 
 [node name="LaserSegment" type="Area3D" unique_id=1970657455]
 script = ExtResource("1_qah4g")
@@ -37,8 +47,24 @@ shape = SubResource("CapsuleShape3D_qah4g")
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=1954297716]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.5)
+gi_mode = 2
 mesh = SubResource("CapsuleMesh_dhd34")
-surface_material_override/0 = SubResource("ShaderMaterial_wdeng")
+
+[node name="ImpactMesh" type="MeshInstance3D" parent="." unique_id=996804232]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+layers = 0
+cast_shadow = 0
+mesh = SubResource("SphereMesh_lu8bi")
+
+[node name="ImpactParticles" type="GPUParticles3D" parent="ImpactMesh" unique_id=75295920]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.12342644, -5.395141e-09)
+cast_shadow = 0
+amount = 35
+lifetime = 0.3
+local_coords = true
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_lu8bi")
+draw_pass_1 = SubResource("SphereMesh_wdeng")
 
 [connection signal="area_entered" from="." to="." method="entity_entered"]
 [connection signal="body_entered" from="." to="." method="entity_entered"]

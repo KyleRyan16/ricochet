@@ -6,6 +6,7 @@ var _length : float = 0
 
 @onready var collider : CollisionShape3D = $Collision
 @onready var mesh : MeshInstance3D = $Mesh
+@onready var impact_mesh : MeshInstance3D = $ImpactMesh
 
 @export var desired_radius : float = 0.1
 
@@ -34,6 +35,9 @@ func update_shapes():
 	mesh.mesh.height = _length
 	mesh.mesh.radius = min(_length / 2, desired_radius)
 	mesh.position.z = _length / 2
+	
+	impact_mesh.mesh.radius = min(_length / 2, desired_radius * 2)
+	impact_mesh.mesh.height = min(_length / 2, desired_radius * 4)
 	
 func get_new_tail(new_length : float) -> Vector3:
 	var diff := head - tail
