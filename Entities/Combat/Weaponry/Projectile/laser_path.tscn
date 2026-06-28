@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cj3trsb7y2c23"]
+
+[ext_resource type="Script" uid="uid://bpwvgoggqd0bg" path="res://Entities/Combat/Weaponry/Projectile/laser_path.gd" id="1_fp77o"]
+[ext_resource type="PackedScene" uid="uid://bqelyhsukkrsw" path="res://Entities/Combat/Weaponry/Projectile/laser_segment.tscn" id="2_njtse"]
+
+[node name="LaserPath" type="Node3D" unique_id=1675034893]
+script = ExtResource("1_fp77o")
+laser_segment_scene = ExtResource("2_njtse")
+max_length = 10.0
+metadata/_custom_type_script = "uid://bpwvgoggqd0bg"

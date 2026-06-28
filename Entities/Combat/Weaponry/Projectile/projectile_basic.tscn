@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://4nq4tuv6qo8r"]
 
 [ext_resource type="Script" uid="uid://m3l7ktuiecrs" path="res://Entities/Combat/Weaponry/Projectile/projectile.gd" id="1_r7q6e"]
+[ext_resource type="Shader" uid="uid://ec0ik4qysm04" path="res://Entities/Combat/Weaponry/Projectile/laser_projectile.gdshader" id="2_bovvc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_omnaf"]
 
@@ -8,13 +9,22 @@
 top_radius = 0.1
 bottom_radius = 0.14
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ulkw"]
-disable_ambient_light = true
-albedo_color = Color(1, 1, 1, 0)
-emission_enabled = true
-emission = Color(1, 0, 0, 1)
-emission_energy_multiplier = 20.0
-disable_receive_shadows = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hrh8a"]
+render_priority = 0
+shader = ExtResource("2_bovvc")
+shader_parameter/albedo = Color(1, 0, 0, 1)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/emission = Color(1, 0, 0, 1)
+shader_parameter/emission_energy = 29.99999932944
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [node name="Projectile" type="Area3D" unique_id=813081859]
 collision_layer = 0
@@ -30,7 +40,7 @@ shape = SubResource("CapsuleShape3D_omnaf")
 transform = Transform3D(1, 0, 0, 0, 0, 0.9999999, 0, -0.9999999, 0, 0, 0, -1)
 gi_mode = 2
 mesh = SubResource("CylinderMesh_omnaf")
-surface_material_override/0 = SubResource("StandardMaterial3D_1ulkw")
+surface_material_override/0 = SubResource("ShaderMaterial_hrh8a")
 
 [connection signal="area_entered" from="." to="." method="entity_entered"]
 [connection signal="body_entered" from="." to="." method="entity_entered"]

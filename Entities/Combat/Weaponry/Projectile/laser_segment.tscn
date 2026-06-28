@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bqelyhsukkrsw"]
+
+[ext_resource type="Script" uid="uid://3hrcu5gsl7dc" path="res://Entities/Combat/Weaponry/Projectile/laser_segment.gd" id="1_qah4g"]
+[ext_resource type="Shader" uid="uid://ec0ik4qysm04" path="res://Entities/Combat/Weaponry/Projectile/laser_projectile.gdshader" id="2_lu8bi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qah4g"]
+resource_local_to_scene = true
+height = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dhd34"]
+resource_local_to_scene = true
+height = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wdeng"]
+render_priority = 0
+shader = ExtResource("2_lu8bi")
+shader_parameter/albedo = Color(1, 0, 0, 1)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/emission = Color(1, 0, 0, 1)
+shader_parameter/emission_energy = 29.99999932944
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[node name="LaserSegment" type="Area3D" unique_id=1970657455]
+script = ExtResource("1_qah4g")
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=231507260]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.5)
+shape = SubResource("CapsuleShape3D_qah4g")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1954297716]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.5)
+mesh = SubResource("CapsuleMesh_dhd34")
+surface_material_override/0 = SubResource("ShaderMaterial_wdeng")
+
+[connection signal="area_entered" from="." to="." method="entity_entered"]
+[connection signal="body_entered" from="." to="." method="entity_entered"]
