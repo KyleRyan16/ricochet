@@ -34,7 +34,7 @@ transform = Transform3D(0.20421684, 0, 0, 0, -4.371139e-08, -0.20421684, 0, 1, -
 mesh = SubResource("CylinderMesh_5up26")
 
 [node name="ProjectileSpawn" type="Node3D" parent="MeshInstance3D2" unique_id=370264257]
-transform = Transform3D(4.8967557, 0, 0, 0, -4.371139e-08, 1, 0, -4.8967557, -2.1404401e-07, 0, 0.7516719, -0.08400303)
+transform = Transform3D(4.8967557, 0, 0, 0, -4.371139e-08, 1, 0, -4.8967557, -2.1404401e-07, 0, -1.007141, -0.08400265)
 
 [node name="AimSolver" type="Node" parent="." unique_id=1083339505]
 script = ExtResource("1_5up26")
