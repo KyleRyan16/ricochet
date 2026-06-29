@@ -34,140 +34,154 @@ point_count = 3
 script = ExtResource("1_7mycd")
 show_fps = true
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1303708489]
-transform = Transform3D(1, 0, 0, 0, 0.2950244, 0.95548975, 0, -0.95548975, 0.29502442, 0, 49.652782, 18.696198)
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=907836988]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=583462897]
+handle_input_locally = false
+size = Vector2i(288, 162)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1303708489]
+transform = Transform3D(1, 0, 0, 0, 0.2950244, 0.95548975, 0, -0.95548975, 0.2950244, 0, 49.652782, 18.696198)
 environment = SubResource("Environment_1bvp3")
 fov = 20.1
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=575528464]
+[node name="Entities" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1935437479]
+
+[node name="HostileHumanoid6" parent="SubViewportContainer/SubViewport/Entities" unique_id=1808762767 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(-0.22930479, -0.024149232, -0.9730551, -0.0056910366, 0.99970835, -0.02346959, 0.9733382, 0.00015599746, -0.22937539, -0.7473488, 0, 3.9438882)
+
+[node name="HostileHumanoid8" parent="SubViewportContainer/SubViewport/Entities" unique_id=297129888 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(-0.22930479, -0.024149232, -0.9730551, -0.0056910366, 0.99970835, -0.02346959, 0.9733382, 0.00015599746, -0.22937539, -3.4483562, 0, 6.471752)
+
+[node name="HostileHumanoid9" parent="SubViewportContainer/SubViewport/Entities" unique_id=452541773 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(-0.22930479, -0.024149232, -0.9730551, -0.0056910366, 0.99970835, -0.02346959, 0.9733382, 0.00015599746, -0.22937539, -7.8520145, 0, 6.2821355)
+
+[node name="HostileHumanoid7" parent="SubViewportContainer/SubViewport/Entities" unique_id=1506025387 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(-0.22930479, -0.024149232, -0.9730551, -0.0056910366, 0.99970835, -0.02346959, 0.9733382, 0.00015599746, -0.22937539, -5.162881, 0, 0.9717188)
+
+[node name="PlayerCharacter" parent="SubViewportContainer/SubViewport/Entities" unique_id=122810033 instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.448348, 0.4794035, 4.954174)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="SubViewportContainer/SubViewport" unique_id=575528464]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.448348, -0.20107198, 4.9541745)
 navigation_mesh = SubResource("NavigationMesh_1bvp3")
 
-[node name="BasicGeo" parent="NavigationRegion3D" unique_id=869327778 instance=ExtResource("1_0xm2m")]
+[node name="BasicGeo" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=869327778 instance=ExtResource("1_0xm2m")]
 transform = Transform3D(100, 0, 0, 0, 4.592, 0, 0, 0, 109.459, -3.448348, 0.20107198, -4.9541745)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D" unique_id=215965911]
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=215965911]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0791578, 2.1507928, 6.990974)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1781082377]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/NavigationRegion3D/StaticBody3D" unique_id=1781082377]
 mesh = SubResource("CylinderMesh_lquwl")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D" unique_id=2130184977]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/NavigationRegion3D/StaticBody3D" unique_id=2130184977]
 shape = SubResource("ConcavePolygonShape3D_7mycd")
 
-[node name="BasicGeo2" parent="NavigationRegion3D" unique_id=864478052 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo2" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=864478052 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1.2783611, 0, -0.7596239, 0, 2.934044, 0, 7.672084, 0, 0.12657233, -0.21050882, 0.20107198, -6.7033205)
 
-[node name="BasicGeo3" parent="NavigationRegion3D" unique_id=1689177251 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo3" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=1689177251 instance=ExtResource("3_h2yge")]
 transform = Transform3D(7.7778587, 0, 0, 0, 2.934044, 0, 0, 0, 0.7700968, -4.8981605, 0.20107198, -10.786831)
 
-[node name="BasicGeo6" parent="NavigationRegion3D" unique_id=1053882340 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo6" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=1053882340 instance=ExtResource("3_h2yge")]
 transform = Transform3D(28.206, 0, 0, 0, 56.412, 0, 0, 0, 28.206, 47.35678, -5.9245996, -29.77945)
 
-[node name="BasicGeo16" parent="NavigationRegion3D" unique_id=394868373 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo16" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=394868373 instance=ExtResource("3_h2yge")]
 transform = Transform3D(14.939504, 0, 0, 0, 29.879007, 0, 0, 0, 14.939504, 9.7584505, -5.9245996, -20.654432)
 
-[node name="BasicGeo17" parent="NavigationRegion3D" unique_id=1977438936 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo17" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=1977438936 instance=ExtResource("3_h2yge")]
 transform = Transform3D(6.8449106, 0, 0, 0, 18.074617, 0, 0, 0, 8.126244, 12.548783, -5.9246035, -9.312239)
 
-[node name="BasicGeo7" parent="NavigationRegion3D" unique_id=2047681823 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo7" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=2047681823 instance=ExtResource("3_h2yge")]
 transform = Transform3D(70.31242, 0, 0, 0, 200, 0, 0, 0, 66.66395, 235.9925, 0.20107198, 44.13508)
 
-[node name="BasicGeo8" parent="NavigationRegion3D" unique_id=2083123149 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo8" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=2083123149 instance=ExtResource("3_h2yge")]
 transform = Transform3D(70.31242, 0, 0, 0, 200, 0, 0, 0, 66.66395, 334.4382, 0.20107198, -90.786514)
 
-[node name="BasicGeo9" parent="NavigationRegion3D" unique_id=695262255 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo9" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=695262255 instance=ExtResource("3_h2yge")]
 transform = Transform3D(70.31242, 0, 0, 0, 200, 0, 0, 0, 66.66395, -298.37363, 0.20107198, -24.122566)
 
-[node name="BasicGeo10" parent="NavigationRegion3D" unique_id=2094640088 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo10" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=2094640088 instance=ExtResource("3_h2yge")]
 transform = Transform3D(70.31242, 0, 0, 0, 200, 0, 0, 0, 66.66395, -298.37363, 0.20107198, -290.77835)
 
-[node name="BasicGeo11" parent="NavigationRegion3D" unique_id=740311518 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo11" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=740311518 instance=ExtResource("3_h2yge")]
 transform = Transform3D(70.31242, 0, 0, 0, 200, 0, 0, 0, 66.66395, -157.74878, 0.20107198, 175.8693)
 
-[node name="BasicGeo12" parent="NavigationRegion3D" unique_id=950327900 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo12" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=950327900 instance=ExtResource("3_h2yge")]
 transform = Transform3D(70.31242, 0, 0, 0, 200, 0, 0, 0, 66.66395, 128.38937, 0.20107198, 184.13226)
 
-[node name="BasicGeo13" parent="NavigationRegion3D" unique_id=1793169469 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo13" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=1793169469 instance=ExtResource("3_h2yge")]
 transform = Transform3D(70.31242, 0, 0, 0, 200, 0, 0, 0, 66.66395, 476.94592, 0.20107198, -54.293808)
 
-[node name="BasicGeo14" parent="NavigationRegion3D" unique_id=2086731550 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo14" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=2086731550 instance=ExtResource("3_h2yge")]
 transform = Transform3D(70.31242, 0, 0, 0, 200, 0, 0, 0, 66.66395, 476.94592, -86.37979, 85.38176)
 
-[node name="BasicGeo15" parent="NavigationRegion3D" unique_id=1041094659 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo15" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=1041094659 instance=ExtResource("3_h2yge")]
 transform = Transform3D(70.31242, 0, 0, 0, 200, 0, 0, 0, 66.66395, -79.520996, -86.37979, -359.636)
 
-[node name="BasicGeo4" parent="NavigationRegion3D" unique_id=835406633 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo4" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=835406633 instance=ExtResource("3_h2yge")]
 transform = Transform3D(3.739634, 0, 0.675242, 0, 2.9340441, 0, -6.8198414, 0, 0.3702665, -10.470735, 0.20107102, -7.469026)
 
-[node name="BasicGeo5" parent="NavigationRegion3D" unique_id=870301421 instance=ExtResource("3_h2yge")]
+[node name="BasicGeo5" parent="SubViewportContainer/SubViewport/NavigationRegion3D" unique_id=870301421 instance=ExtResource("3_h2yge")]
 transform = Transform3D(-5.6195726, 0, 0.5324154, 0, 2.9340441, 0, -5.3773136, 0, -0.55640167, -9.646138, 0.20107198, -1.358983)
 
-[node name="VoxelGI" type="VoxelGI" parent="." unique_id=628556096]
+[node name="VoxelGI" type="VoxelGI" parent="SubViewportContainer/SubViewport" unique_id=628556096]
 subdiv = 2
 size = Vector3(50, 30, 50)
 data = ExtResource("6_7mycd")
 
-[node name="Lighting" type="Node3D" parent="." unique_id=951362007]
+[node name="Lighting" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=951362007]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6415892, 1.6148272, -4.947386)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Lighting" unique_id=1655949001]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Lighting" unique_id=1655949001]
 light_energy = 0.502
 light_indirect_energy = 4.1
 shadow_enabled = true
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="Lighting" unique_id=1562074829]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Lighting" unique_id=1562074829]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.365905, 0, 0)
 light_energy = 0.502
 light_indirect_energy = 4.1
 shadow_enabled = true
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="Lighting" unique_id=119331995]
+[node name="OmniLight3D3" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Lighting" unique_id=119331995]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1522665, 0, 9.387505)
 light_energy = 0.502
 light_indirect_energy = 4.1
 shadow_enabled = true
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="Lighting" unique_id=80776001]
+[node name="OmniLight3D4" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Lighting" unique_id=80776001]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.956604, 0, 6.461628)
 light_energy = 0.502
 light_indirect_energy = 4.1
 shadow_enabled = true
 
-[node name="OmniLight3D5" type="OmniLight3D" parent="Lighting" unique_id=336239304]
+[node name="OmniLight3D5" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Lighting" unique_id=336239304]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.043396, 0, 9.461628)
 light_energy = 0.502
 light_indirect_energy = 4.1
 shadow_enabled = true
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1059741230]
-transform = Transform3D(0.4620968, -0.48573095, 0.7419784, -0.6414566, 0.3946629, 0.6578561, -0.6123724, -0.77994007, -0.12920292, 0, 49.652782, 18.696198)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1059741230]
+transform = Transform3D(0.46209684, -0.48573095, 0.74197847, -0.64145666, 0.39466292, 0.6578561, -0.61237246, -0.7799402, -0.12920286, 0, 49.652782, 18.696198)
 light_color = Color(0.8229258, 0.6102791, 0.48333627, 1)
 light_energy = 0.369
 shadow_enabled = true
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 141.7
 
-[node name="Path3D" type="Path3D" parent="." unique_id=855929015]
+[node name="Path3D" type="Path3D" parent="SubViewportContainer/SubViewport" unique_id=855929015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.883799, 0, 8.051129)
 curve = SubResource("Curve3D_7mycd")
-
-[node name="Entities" type="Node3D" parent="." unique_id=1935437479]
-
-[node name="PlayerCharacter" parent="Entities" unique_id=122810033 instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.448348, 0.4794035, 4.9541745)
-
-[node name="HostileHumanoid5" parent="Entities" unique_id=1802037797 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(-0.22930479, -0.024149232, -0.9730551, -0.0056910366, 0.99970835, -0.02346959, 0.9733382, 0.00015599746, -0.22937539, 6.9273977, 0, 0.08310318)
-
-[node name="HostileHumanoid6" parent="Entities" unique_id=1808762767 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(-0.22930479, -0.024149232, -0.9730551, -0.0056910366, 0.99970835, -0.02346959, 0.9733382, 0.00015599746, -0.22937539, -0.7473488, 0, 3.9438882)
-
-[node name="HostileHumanoid8" parent="Entities" unique_id=297129888 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(-0.22930479, -0.024149232, -0.9730551, -0.0056910366, 0.99970835, -0.02346959, 0.9733382, 0.00015599746, -0.22937539, -3.4483562, 0, 6.471752)
-
-[node name="HostileHumanoid9" parent="Entities" unique_id=452541773 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(-0.22930479, -0.024149232, -0.9730551, -0.0056910366, 0.99970835, -0.02346959, 0.9733382, 0.00015599746, -0.22937539, -7.8520145, 0, 6.2821355)
-
-[node name="HostileHumanoid7" parent="Entities" unique_id=1506025387 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(-0.22930479, -0.024149232, -0.9730551, -0.0056910366, 0.99970835, -0.02346959, 0.9733382, 0.00015599746, -0.22937539, -5.162881, 0, 0.9717188)
