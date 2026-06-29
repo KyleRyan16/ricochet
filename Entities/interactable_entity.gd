@@ -3,8 +3,7 @@ extends CharacterBody3D
 class_name InteractableEntity
 
 func projectile_hit(projectile : Node3D):
-	destroy(projectile)
+	destroy()
 
-func destroy(destroyer : Node3D):
-	print(destroyer)
+func destroy():
 	queue_free()

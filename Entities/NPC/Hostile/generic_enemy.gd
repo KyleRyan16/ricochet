@@ -2,6 +2,8 @@ extends InteractableEntity
 
 @onready var weapon_user : WeaponUser = $WeaponUser
 
+@onready var mesh : Dissolvable = $Dissolvable
+
 @onready var move_speed : float = 2
 
 ## per second
@@ -14,6 +16,8 @@ extends InteractableEntity
 @export var path_update_rate : float = 0.5
 @onready var time_since_last_path : float = path_update_rate
 
+var is_alive : bool = true
+
 var target : Node3D = null
 var poi : Vector3
 
@@ -21,10 +25,11 @@ func _ready() -> void:
 	poi = global_position
 	nav_agent.path_desired_distance = 0.5
 	nav_agent.target_desired_distance = 4
-	
 
-	
 func _physics_process(delta: float) -> void:
+	
+	if !is_alive:
+		return
 	
 	DebugDraw3D.draw_sphere(poi, 0.5, Color.YELLOW)
 	
@@ -75,3 +80,10 @@ func entity_sight_updated(entity: Node3D, can_see: bool):
 
 func on_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity = safe_velocity
+	
+func projectile_hit(projectile : Node3D):
+	if !is_alive:
+		return
+	is_alive = false
+	mesh.dissolve_finished.connect(destroy)
+	mesh.dissolve(projectile.global_position)
