@@ -1,7 +1,16 @@
 [gd_scene format=3 uid="uid://bqthoup17acjk"]
 
 [ext_resource type="Script" uid="uid://dsxgy27m0iivf" path="res://Entities/Combat/Weaponry/Hitscan/projectile_hitscan.gd" id="1_jk37d"]
+[ext_resource type="PackedScene" uid="uid://bqelyhsukkrsw" path="res://Entities/Combat/Weaponry/Projectile/laser_segment.tscn" id="2_cxust"]
 
 [node name="HitscanProjectile" type="Node3D" unique_id=1277620059]
 script = ExtResource("1_jk37d")
+laser_segment_scene = ExtResource("2_cxust")
 metadata/_custom_type_script = "uid://dsxgy27m0iivf"
+
+[node name="Area" type="Area3D" parent="." unique_id=198475442]
+collision_layer = 4
+collision_mask = 4
+
+[connection signal="area_entered" from="Area" to="." method="entered"]
+[connection signal="body_entered" from="Area" to="." method="entered"]

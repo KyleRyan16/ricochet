@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://c80s3p4vesk83" path="res://common/effects/dissolve.gdshader" id="3_4rt0j"]
 [ext_resource type="Script" uid="uid://blfr2xb316wb5" path="res://Entities/Combat/Weaponry/Projectile/weapon_projectile.gd" id="4_0hvvw"]
 [ext_resource type="Texture2D" uid="uid://c46xvf1efpphd" path="res://common/effects/perlin_noise.png" id="4_seg3p"]
-[ext_resource type="Resource" uid="uid://bchltyhfw0omo" path="res://Entities/Combat/Weaponry/Projectile/laser_projectile.tres" id="5_stcdd"]
+[ext_resource type="Resource" uid="uid://bsnqnnivure2u" path="res://Entities/Combat/Weaponry/Hitscan/hitscan_projectile.tres" id="8_3xgjn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02ohv"]
 height = 1.8
@@ -57,5 +57,5 @@ metadata/_custom_type_script = "uid://dor1ai1n7igx0"
 [node name="ProjectileWeapon" type="Node" parent="WeaponUser" unique_id=1299432537 node_paths=PackedStringArray("spawn_transform")]
 script = ExtResource("4_0hvvw")
 spawn_transform = NodePath("../../MeshInstance3D2/ProjectileSpawn")
-projectile_spec = ExtResource("5_stcdd")
+projectile_spec = ExtResource("8_3xgjn")
 metadata/_custom_type_script = "uid://blfr2xb316wb5"

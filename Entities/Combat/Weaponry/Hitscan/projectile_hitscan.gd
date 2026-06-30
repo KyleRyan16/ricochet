@@ -5,34 +5,32 @@ class_name HitscanProjectile
 # how long the hitscan persists, not just visually
 @export var lifetime : float = 1
 
+@onready var area : Area3D = $Area
+
+@export var laser_segment_scene : PackedScene = null
+
 # Called when the node enters the scene tree for the first time.
 func init(new_spec : ProjectileSpec) -> void:
 	var result : AimSolver.TrajectoryResult = AimSolver.TrajectoryResult.Init(new_spec.max_ricochets)
 	AimSolver.simulate_trajectory(self, global_position, -basis.z, new_spec.distance, result)
 	var position : Vector3 = global_position
 	for move in result.movements:
-		var end : Vector3 = position + move
+		var previous : Vector3 = position
+		var current : Vector3 = previous + move
+		var segment := add_segment(current, previous)
 		
-		# create the Aread3D and position it accordingly
-		var area : Area3D = Area3D.new()
-		add_child(area)
-		area.global_position = position + move/2
-		area.look_at(end)
-		area.collision_mask = 1 << 2
-		
-		# create the CollisionShape and scale accordingly
-		var collider : CollisionShape3D = CollisionShape3D.new()
-		var collider_shape : CapsuleShape3D = CapsuleShape3D.new()
-		collider_shape.height = move.length()
-		collider.shape = collider_shape
-
-		collider.rotation_degrees.x += -90
-		
-		area.add_child(collider)
-		area.body_entered.connect(entered)
-		area.area_entered.connect(entered)
-
+		segment.init(current, previous)
+		area.add_child(segment)
+		segment.global_position = current
+		segment.look_at(current + (current - previous).normalized())
 		position += move
+		
+		
+func add_segment(head_pos : Vector3, tail : Vector3) -> LaserSegment:
+	var segment : LaserSegment = laser_segment_scene.instantiate()
+	
+	
+	return segment
 		
 func _physics_process(delta: float) -> void:
 	lifetime -= delta
