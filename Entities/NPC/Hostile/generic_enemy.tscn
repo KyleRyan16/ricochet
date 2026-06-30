@@ -3,9 +3,24 @@
 [ext_resource type="Script" uid="uid://iilviohproc2" path="res://Entities/NPC/Hostile/generic_enemy.gd" id="1_tmm4x"]
 [ext_resource type="PackedScene" uid="uid://c16r7urmci7tf" path="res://systems/senses/sense_sight.tscn" id="2_4dqoh"]
 [ext_resource type="Script" uid="uid://dor1ai1n7igx0" path="res://Entities/Combat/weapon_user.gd" id="3_mdbcs"]
+[ext_resource type="Shader" uid="uid://c80s3p4vesk83" path="res://common/effects/dissolve.gdshader" id="3_wb7wg"]
+[ext_resource type="Texture2D" uid="uid://c46xvf1efpphd" path="res://common/effects/perlin_noise.png" id="4_7hvoo"]
 [ext_resource type="Script" uid="uid://blfr2xb316wb5" path="res://Entities/Combat/Weaponry/Projectile/weapon_projectile.gd" id="4_tmm4x"]
 [ext_resource type="PackedScene" uid="uid://d0jud1gwvjjkp" path="res://Entities/NPC/Hostile/dissolvable.tscn" id="5_7hvoo"]
 [ext_resource type="Resource" uid="uid://bovxsvjk022k8" path="res://Entities/Combat/Weaponry/Projectile/default_projectile.tres" id="5_tmm4x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2v1l5"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_wb7wg")
+shader_parameter/t = 0.0
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/noise_tex = ExtResource("4_7hvoo")
+shader_parameter/noise_scale = 1.0
+shader_parameter/burn_size = 0.12999999709424
+shader_parameter/burn_emissive = 11.1999997720096
+shader_parameter/burn_color = Color(1, 0, 0, 1)
+shader_parameter/impact_position = Vector3(0.5, 0.965, 0)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mpfnf"]
 height = 1.8
@@ -15,6 +30,7 @@ script = ExtResource("1_tmm4x")
 
 [node name="Dissolvable" parent="." unique_id=1344224893 instance=ExtResource("5_7hvoo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+material_override = SubResource("ShaderMaterial_2v1l5")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=909370480]
 collision_layer = 4
@@ -33,7 +49,7 @@ debug_color = Color(0.54901963, 0, 0.08627451, 1)
 debug_fill = false
 
 [node name="Sight" parent="." unique_id=1165751035 instance=ExtResource("2_4dqoh")]
-fov = 130.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
 subdivisions = 24
 
 [node name="ProjectileSpawnPoint" type="Node3D" parent="." unique_id=805884002]

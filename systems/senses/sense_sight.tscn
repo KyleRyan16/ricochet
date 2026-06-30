@@ -1,22 +1,34 @@
 [gd_scene format=4 uid="uid://c16r7urmci7tf"]
 
 [ext_resource type="Script" uid="uid://bracq2uud68aw" path="res://systems/senses/sense_sight.gd" id="1_k828j"]
+[ext_resource type="Shader" uid="uid://ux7j3fgbjiyk" path="res://systems/senses/sight_cone.gdshader" id="2_wvwgv"]
+[ext_resource type="Texture2D" uid="uid://c46xvf1efpphd" path="res://common/effects/perlin_noise.png" id="3_4iqqu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k828j"]
 radius = 5.0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_k828j"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wvwgv"]
+render_priority = 0
+shader = ExtResource("2_wvwgv")
+shader_parameter/amplitude = 0.81999998167136
+shader_parameter/frequency = 14.99999966472
+shader_parameter/rippleRate = 2.0000000223518
+shader_parameter/wave_color = Color(0, 0.8235294, 0.84313726, 1)
+shader_parameter/waveAmplitude = 0.28
+shader_parameter/waveFrequency = 4.0
+shader_parameter/noise = ExtResource("3_4iqqu")
+shader_parameter/noise_size = 1.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wvwgv"]
 _surfaces = [{
 "aabb": AABB(-4.531539, 0, -5, 9.063078, 1e-05, 5),
-"format": 34359738369,
+"attribute_data": PackedByteArray("AAAAPwAAAAAAAAAAAACAPwAAAAAAAIA/AAAAPwAAAAAAAAAAAACAP4wuuj0AAIA/AAAAPwAAAACMLro9AACAP4wuOj4AAIA/AAAAPwAAAACMLjo+AACAP+miiz4AAIA/AAAAPwAAAADpoos+AACAP4wuuj4AAIA/AAAAPwAAAACMLro+AACAPy+66D4AAIA/AAAAPwAAAAAvuug+AACAP+miCz8AAIA/AAAAPwAAAADpogs/AACAP7roIj8AAIA/AAAAPwAAAAC66CI/AACAP4wuOj8AAIA/AAAAPwAAAACMLjo/AACAP110UT8AAIA/AAAAPwAAAABddFE/AACAPy+6aD8AAIA/AAAAPwAAAAAvumg/AACAPwAAgD8AAIA/"),
+"format": 34359738385,
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 36,
 "vertex_data": PackedByteArray("AAAAAAAAAAAAAAAAXgKRwAAAAADjPAfAO7eBwAAAAABhVjvAAAAAAAAAAAAAAAAAO7eBwAAAAABhVjvA6phbwAAAAABzwmjAAAAAAAAAAAAAAAAA6phbwAAAAABzwmjAle8rwAAAAABQ8YbAAAAAAAAAAAAAAAAAle8rwAAAAABQ8YbAvErsvwAAAAATspTAAAAAAAAAAAAAAAAAvErsvwAAAAATspTAXJRwvwAAAAAEJp3AAAAAAAAAAAAAAAAAXJRwvwAAAAAEJp3AAADIJgAAAAAAAKDAAAAAAAAAAAAAAAAAAADIJgAAAAAAAKDAXJRwPwAAAAAEJp3AAAAAAAAAAAAAAAAAXJRwPwAAAAAEJp3AvErsPwAAAAATspTAAAAAAAAAAAAAAAAAvErsPwAAAAATspTAle8rQAAAAABQ8YbAAAAAAAAAAAAAAAAAle8rQAAAAABQ8YbA6phbQAAAAABzwmjAAAAAAAAAAAAAAAAA6phbQAAAAABzwmjAO7eBQAAAAABhVjvAAAAAAAAAAAAAAAAAO7eBQAAAAABhVjvAXgKRQAAAAADjPAfA")
 }]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k828j"]
-albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_helvd"]
 radius = 10.0
@@ -25,6 +37,7 @@ radius = 10.0
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_k828j")
+fov = 130.0
 sight_mask = 10
 
 [node name="InnerRadius" type="CollisionShape3D" parent="." unique_id=665333829]
@@ -33,10 +46,9 @@ debug_color = Color(0, 0.6, 0.69803923, 1)
 debug_fill = false
 
 [node name="VisualCone" type="MeshInstance3D" parent="." unique_id=1293957097]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-gi_mode = 2
-mesh = SubResource("ArrayMesh_k828j")
-surface_material_override/0 = SubResource("StandardMaterial3D_k828j")
+material_override = SubResource("ShaderMaterial_wvwgv")
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_wvwgv")
 
 [node name="OuterRadius" type="CollisionShape3D" parent="." unique_id=359389746]
 shape = SubResource("SphereShape3D_helvd")
