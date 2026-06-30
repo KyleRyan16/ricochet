@@ -2,18 +2,28 @@
 
 [ext_resource type="Script" uid="uid://c576h6slnpcke" path="res://Entities/Player/player_character.gd" id="1_02ohv"]
 [ext_resource type="Script" uid="uid://dje38v5f3r2us" path="res://Entities/Combat/aim_solver.gd" id="1_5up26"]
+[ext_resource type="PackedScene" uid="uid://d0jud1gwvjjkp" path="res://Entities/NPC/Hostile/dissolvable.tscn" id="2_3xgjn"]
 [ext_resource type="Script" uid="uid://dor1ai1n7igx0" path="res://Entities/Combat/weapon_user.gd" id="3_0hvvw"]
+[ext_resource type="Shader" uid="uid://c80s3p4vesk83" path="res://common/effects/dissolve.gdshader" id="3_4rt0j"]
 [ext_resource type="Script" uid="uid://blfr2xb316wb5" path="res://Entities/Combat/Weaponry/Projectile/weapon_projectile.gd" id="4_0hvvw"]
+[ext_resource type="Texture2D" uid="uid://c46xvf1efpphd" path="res://common/effects/perlin_noise.png" id="4_seg3p"]
 [ext_resource type="Resource" uid="uid://bchltyhfw0omo" path="res://Entities/Combat/Weaponry/Projectile/laser_projectile.tres" id="5_stcdd"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_tfo3t"]
-height = 1.8
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stcdd"]
-albedo_color = Color(0, 0, 0.7058824, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02ohv"]
 height = 1.8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_86uyi"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_4rt0j")
+shader_parameter/t = 0.0
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/noise_tex = ExtResource("4_seg3p")
+shader_parameter/noise_scale = 1.0
+shader_parameter/burn_size = 0.12999999709424
+shader_parameter/burn_emissive = 11.1999997720096
+shader_parameter/burn_color = Color(1, 0, 0, 1)
+shader_parameter/impact_position = Vector3(0.5, 0.965, 0)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_5up26"]
 
@@ -22,12 +32,11 @@ collision_layer = 13
 collision_mask = 5
 script = ExtResource("1_02ohv")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=712686711]
-mesh = SubResource("CapsuleMesh_tfo3t")
-surface_material_override/0 = SubResource("StandardMaterial3D_stcdd")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1733719610]
 shape = SubResource("CapsuleShape3D_02ohv")
+
+[node name="Dissolvable" parent="CollisionShape3D" unique_id=1344224893 instance=ExtResource("2_3xgjn")]
+material_override = SubResource("ShaderMaterial_86uyi")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=877310445]
 transform = Transform3D(0.20421684, 0, 0, 0, -4.371139e-08, -0.20421684, 0, 1, -8.926602e-09, 0, 0.09999992, -1.436191)

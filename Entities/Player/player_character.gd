@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var aim_solver : AimSolver = $AimSolver
 @onready var weapon_user : WeaponUser = $WeaponUser
+@onready var mesh : Dissolvable = $CollisionShape3D/Dissolvable
 
 @export var aim_distance_simulation : float = 15
 @export var aim_simulation_bounces : int = 3
@@ -9,6 +10,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+var is_alive : bool = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Attack"):
@@ -16,6 +18,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	if !is_alive:
+		return;
 	
 	var aim_position := aim_solver.get_mouse_aim_position(global_position)
 	
@@ -51,8 +56,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func projectile_hit(projectile : Node3D):
-	destroy(projectile)
+	if !is_alive:
+		return
+	is_alive = false
+	mesh.dissolve_finished.connect(destroy)
+	mesh.dissolve(projectile.global_position)
 
-func destroy(destroyer : Node3D):
-	print(destroyer)
+func destroy():
 	queue_free()
