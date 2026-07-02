@@ -25,7 +25,8 @@ func _physics_process(delta: float) -> void:
 	var aim_position := aim_solver.get_mouse_aim_position(global_position)
 	
 	look_at(aim_position, Vector3.DOWN)
-	var result : AimSolver.TrajectoryResult = AimSolver.TrajectoryResult.Init(aim_simulation_bounces)
+	var bounce_count : int = min(aim_simulation_bounces, weapon_user.weapon.projectile_spec.max_ricochets)
+	var result : AimSolver.TrajectoryResult = AimSolver.TrajectoryResult.Init(bounce_count)
 	AimSolver.simulate_trajectory(self, global_position, -basis.z, aim_distance_simulation, result)
 	
 	var start_position = global_position

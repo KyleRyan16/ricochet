@@ -12,7 +12,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02ohv"]
 height = 1.8
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_86uyi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xgjn"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_4rt0j")
@@ -36,7 +36,7 @@ script = ExtResource("1_02ohv")
 shape = SubResource("CapsuleShape3D_02ohv")
 
 [node name="Dissolvable" parent="CollisionShape3D" unique_id=1344224893 instance=ExtResource("2_3xgjn")]
-material_override = SubResource("ShaderMaterial_86uyi")
+material_override = SubResource("ShaderMaterial_3xgjn")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=877310445]
 transform = Transform3D(0.20421684, 0, 0, 0, -4.371139e-08, -0.20421684, 0, 1, -8.926602e-09, 0, 0.09999992, -1.436191)
