@@ -91,7 +91,7 @@ func get_point_position(angle_rad : float) -> Vector3:
 		inner_shape.radius * -cos(angle_rad)
 	)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	for status in detectable_entities.values():
 		var entity : Node3D = status.entity
 		
@@ -135,7 +135,7 @@ func _physics_process(delta: float) -> void:
 			DebugDraw3D.draw_sphere(result.position, 0.5, Color.RED)
 		DebugDraw3D.draw_arrow(start, result.position, Color.BLUE, 0.5, true)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	construct_vision_field(fov, inner_radius, outer_radius, subdivisions)
 	var cone_mesh : ShaderMaterial = visual_cone.material_override
 	cone_mesh.set_shader_parameter("origin", Vector2(-global_position.x, global_position.z))
@@ -143,13 +143,13 @@ func _process(delta: float) -> void:
 func body_entered(body: Node3D) -> void:
 	detectable_entities[body.get_instance_id()] = VisionStatus.create(body)
 
-func _on_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_body_shape_entered(_body_rid: RID, body: Node3D, _body_shape_index: int, local_shape_index: int) -> void:
 	var local_shape_owner = shape_find_owner(local_shape_index)
 	var local_shape_node : Node3D = shape_owner_get_owner(local_shape_owner)
 	if local_shape_node == inner:
 		detectable_entities[body.get_instance_id()] = VisionStatus.create(body)
 
-func _on_body_shape_exited(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_body_shape_exited(_body_rid: RID, body: Node3D, _body_shape_index: int, local_shape_index: int) -> void:
 	var local_shape_owner = shape_find_owner(local_shape_index)
 	var local_shape_node : Node3D = shape_owner_get_owner(local_shape_owner)
 	

@@ -13,24 +13,17 @@ class_name HitscanProjectile
 func init(new_spec : ProjectileSpec) -> void:
 	var result : AimSolver.TrajectoryResult = AimSolver.TrajectoryResult.Init(new_spec.max_ricochets)
 	AimSolver.simulate_trajectory(self, global_position, -basis.z, new_spec.distance, result)
-	var position : Vector3 = global_position
+	var current_position : Vector3 = global_position
 	for move in result.movements:
-		var previous : Vector3 = position
+		var previous : Vector3 = current_position
 		var current : Vector3 = previous + move
-		var segment := add_segment(current, previous)
+		var segment : LaserSegment = laser_segment_scene.instantiate()
 		
 		segment.init(current, previous)
 		area.add_child(segment)
 		segment.global_position = current
 		segment.look_at(current + (current - previous).normalized())
-		position += move
-		
-		
-func add_segment(head_pos : Vector3, tail : Vector3) -> LaserSegment:
-	var segment : LaserSegment = laser_segment_scene.instantiate()
-	
-	
-	return segment
+		current_position += move
 		
 func _physics_process(delta: float) -> void:
 	lifetime -= delta
