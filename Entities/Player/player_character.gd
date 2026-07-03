@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var aim_distance_simulation : float = 15
 @export var aim_simulation_bounces : int = 3
 
-const SPEED = 5.0
+const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 
 var is_alive : bool = true
