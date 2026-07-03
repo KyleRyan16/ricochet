@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction := (Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
 	World.set_time_scale(move_toward(World.get_time_scale(), max(0.02, input_dir.length()), 0.01))
