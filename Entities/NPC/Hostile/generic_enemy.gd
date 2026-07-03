@@ -6,15 +6,14 @@ extends InteractableEntity
 
 @onready var move_speed : float = 5
 
-## per second
-@export var attack_rate : float = 1
-@export var delay_before_first_attack : float = 0.5
-@onready var time_since_attack : float = -delay_before_first_attack + attack_rate
-
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent3D
 
 @export var path_update_rate : float = 0.5
 @onready var time_since_last_path : float = path_update_rate
+
+## the time spent locked onto a target before an attack can occur
+@export var lock_on_time : float = 1
+var time_locked_on : float = 0
 
 var is_alive : bool = true
 
@@ -35,10 +34,11 @@ func _physics_process(delta: float) -> void:
 	
 	look_at_target()
 	if target:
-		time_since_attack += delta
-		if time_since_attack >= attack_rate:
-			time_since_attack = 0
-			#weapon_user.attack()
+		time_locked_on += delta
+		if time_locked_on >= lock_on_time:
+			weapon_user.attack()
+	else:
+		time_locked_on = 0
 	
 	# unscale the time here so we still get responsive path updates
 	time_since_last_path += delta / World.get_time_scale()

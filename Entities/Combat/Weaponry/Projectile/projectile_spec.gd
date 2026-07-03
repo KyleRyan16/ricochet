@@ -1,4 +1,4 @@
-extends Resource
+extends WeaponSpec
 
 class_name ProjectileSpec
 

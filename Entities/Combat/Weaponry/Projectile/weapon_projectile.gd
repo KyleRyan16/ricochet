@@ -4,13 +4,11 @@ class_name ProjectileWeapon
 
 @export var spawn_transform : Node3D
 
-@export var projectile_spec : ProjectileSpec = null
-
-func attack():
+func _do_attack():
 	fire()
-	pass
-	
-func fire(): 
+
+func fire():
+	var projectile_spec := spec as ProjectileSpec
 	var projectile := projectile_spec.projectile_scene.instantiate()
 	
 	projectile.position = spawn_transform.global_position

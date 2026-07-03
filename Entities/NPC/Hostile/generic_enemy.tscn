@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d0jud1gwvjjkp" path="res://Entities/NPC/Hostile/dissolvable.tscn" id="5_7hvoo"]
 [ext_resource type="Resource" uid="uid://bovxsvjk022k8" path="res://Entities/Combat/Weaponry/Projectile/default_projectile.tres" id="5_tmm4x"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2v1l5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wb7wg"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_wb7wg")
@@ -30,7 +30,7 @@ script = ExtResource("1_tmm4x")
 
 [node name="Dissolvable" parent="." unique_id=1344224893 instance=ExtResource("5_7hvoo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-material_override = SubResource("ShaderMaterial_2v1l5")
+material_override = SubResource("ShaderMaterial_wb7wg")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=909370480]
 collision_layer = 4
@@ -53,7 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
 subdivisions = 24
 
 [node name="ProjectileSpawnPoint" type="Node3D" parent="." unique_id=805884002]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.5365993)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -2.1616855)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=535924759]
 avoidance_enabled = true
@@ -68,7 +68,7 @@ metadata/_custom_type_script = "uid://dor1ai1n7igx0"
 [node name="ProjectileWeapon" type="Node" parent="WeaponUser" unique_id=1761887025 node_paths=PackedStringArray("spawn_transform")]
 script = ExtResource("4_tmm4x")
 spawn_transform = NodePath("../../ProjectileSpawnPoint")
-projectile_spec = ExtResource("5_tmm4x")
+spec = ExtResource("5_tmm4x")
 metadata/_custom_type_script = "uid://blfr2xb316wb5"
 
 [connection signal="entity_sight_updated" from="Sight" to="." method="entity_sight_updated"]
