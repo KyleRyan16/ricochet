@@ -27,8 +27,11 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction := (Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		
-	World.set_time_scale(move_toward(World.get_time_scale(), max(0.02, input_dir.length()), 0.01))
+	
+	if !input_dir:
+		World.set_time_scale(0)
+	else:
+		World.set_time_scale(move_toward(World.get_time_scale(), input_dir.length(), 0.01))
 	print(World.get_time_scale())
 	delta *= World.get_time_scale()
 	
