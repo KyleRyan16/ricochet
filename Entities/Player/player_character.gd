@@ -13,7 +13,7 @@ const JUMP_VELOCITY = 4.5
 var is_alive : bool = true
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("Attack"):
+	if event.is_action_pressed("attack"):
 		weapon_user.attack()
 		
 
