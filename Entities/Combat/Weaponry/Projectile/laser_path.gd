@@ -15,7 +15,7 @@ var bounces : int = 0
 @export var max_length : float = 15
 
 func _physics_process(delta: float) -> void:
-	
+	delta *= World.get_time_scale()
 	if bounces < 0:
 		# bounces are used up, but laser tail still needs to finish
 		max_length -= spec.distance * delta

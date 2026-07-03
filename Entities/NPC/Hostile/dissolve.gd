@@ -12,6 +12,7 @@ signal dissolve_finished
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	delta *= World.get_time_scale()
 	
 	if dissolve_started:
 		dissolve_progress += delta * time_to_dissolve

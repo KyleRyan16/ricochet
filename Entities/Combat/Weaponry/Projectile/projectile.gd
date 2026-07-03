@@ -21,7 +21,8 @@ func init(new_spec : ProjectileSpec):
 	set_physics_process(true)
 
 func _physics_process(delta: float) -> void:
-
+	delta *= World.get_time_scale()
+	
 	var result : AimSolver.TrajectoryResult = AimSolver.TrajectoryResult.Init(bounces)
 	AimSolver.simulate_trajectory(self, global_position, -basis.z, spec.distance * delta, result)
 	for move in result.movements:

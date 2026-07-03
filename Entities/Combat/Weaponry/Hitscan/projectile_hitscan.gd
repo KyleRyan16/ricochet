@@ -26,6 +26,7 @@ func init(new_spec : ProjectileSpec) -> void:
 		current_position += move
 		
 func _physics_process(delta: float) -> void:
+	delta *= World.get_time_scale()
 	lifetime -= delta
 	if lifetime <= 0:
 		queue_free()

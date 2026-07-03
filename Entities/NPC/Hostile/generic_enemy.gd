@@ -4,7 +4,7 @@ extends InteractableEntity
 
 @onready var mesh : Dissolvable = $Dissolvable
 
-@onready var move_speed : float = 2
+@onready var move_speed : float = 5
 
 ## per second
 @export var attack_rate : float = 1
@@ -27,7 +27,7 @@ func _ready() -> void:
 	nav_agent.target_desired_distance = 4
 
 func _physics_process(delta: float) -> void:
-	
+	delta *= World.get_time_scale()
 	if !is_alive:
 		return
 	
@@ -40,14 +40,15 @@ func _physics_process(delta: float) -> void:
 			time_since_attack = 0
 			#weapon_user.attack()
 	
-	time_since_last_path += delta
+	# unscale the time here so we still get responsive path updates
+	time_since_last_path += delta / World.get_time_scale()
 	if time_since_last_path >= path_update_rate:
 		set_movement_target()
 		time_since_last_path -= path_update_rate
 	
 		if !nav_agent.is_navigation_finished():
 			var next_path_position: Vector3 = nav_agent.get_next_path_position()
-			var new_velocity = global_position.direction_to(next_path_position) * move_speed
+			var new_velocity =  global_position.direction_to(next_path_position) * move_speed * delta * 60
 			if nav_agent.avoidance_enabled:
 				nav_agent.velocity = new_velocity
 			else:
