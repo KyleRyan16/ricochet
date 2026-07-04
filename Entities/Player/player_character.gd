@@ -58,8 +58,8 @@ func _physics_process(delta: float) -> void:
 		velocity.z = direction.z * SPEED * delta * 60
 	else:
 		print("yesss")
-		velocity.x = move_toward(velocity.x, 0, SPEED * delta * 60)
-		velocity.z = move_toward(velocity.z, 0, SPEED * delta * 60)
+		velocity.x = velocity.x * delta * 60
+		velocity.z = velocity.z * delta * 60
 
 	move_and_slide()
 
