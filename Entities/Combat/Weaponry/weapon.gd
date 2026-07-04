@@ -10,9 +10,6 @@ var is_attacking : bool = false
 
 # A weapon is used to attack
 
-func _ready() -> void:
-	attack_cooldown = spec.attack_rate
-
 func _process(delta: float) -> void:
 	delta *= World.get_time_scale()
 	if attack_cooldown > 0:
