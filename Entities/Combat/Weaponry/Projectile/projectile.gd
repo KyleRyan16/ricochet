@@ -35,7 +35,6 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func entity_entered(body: Node3D) -> void:
-	print(body)
 	if body.has_method("projectile_hit"):
 		body.projectile_hit(self)
 		

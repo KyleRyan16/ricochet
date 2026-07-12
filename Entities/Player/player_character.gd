@@ -32,7 +32,6 @@ func _physics_process(delta: float) -> void:
 		World.set_time_scale(0)
 	else:
 		World.set_time_scale(move_toward(World.get_time_scale(), input_dir.length(), 0.01))
-	print(World.get_time_scale())
 	delta *= World.get_time_scale()
 	
 	var aim_position := aim_solver.get_mouse_aim_position(global_position)
@@ -53,11 +52,9 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	if direction:
-		print("noooo")
 		velocity.x = direction.x * SPEED * delta * 60
 		velocity.z = direction.z * SPEED * delta * 60
 	else:
-		print("yesss")
 		velocity.x = velocity.x * delta * 60
 		velocity.z = velocity.z * delta * 60
 
