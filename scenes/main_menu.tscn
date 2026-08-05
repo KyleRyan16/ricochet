@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://brmcg0m582841"]
+
+[ext_resource type="Script" uid="uid://d3uh7jwhx78jv" path="res://scenes/main_menu.gd" id="1_l6cm7"]
+
+[node name="MainMenu" type="Node3D" unique_id=1924479700]
+script = ExtResource("1_l6cm7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1770739904]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.23031491, 0.23031494, 0.23031494, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1307766497]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=1076323960]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Control" unique_id=1308415461]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.21527913, 3.159784e-05, 0.21527746, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1457247621]
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=351969186]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Start" type="Button" parent="MarginContainer/HBoxContainer/Buttons" unique_id=1493286436]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ContinueTxt" type="Label" parent="MarginContainer/HBoxContainer/Buttons/Start" unique_id=532628184]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 55
+text = "Start"
+horizontal_alignment = 1
+
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/Buttons" unique_id=2117567700]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuitTxt" type="Label" parent="MarginContainer/HBoxContainer/Buttons/Quit" unique_id=27450588]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -11.5
+offset_right = 17.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 55
+text = "Quit"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=616019237]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/Quit" to="." method="_on_quit_pressed"]
