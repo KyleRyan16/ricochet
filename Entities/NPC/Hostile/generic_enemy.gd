@@ -46,13 +46,13 @@ func _physics_process(delta: float) -> void:
 		set_movement_target()
 		time_since_last_path -= path_update_rate
 	
-		if !nav_agent.is_navigation_finished():
-			var next_path_position: Vector3 = nav_agent.get_next_path_position()
-			var new_velocity =  global_position.direction_to(next_path_position) * move_speed * delta * 60
-			if nav_agent.avoidance_enabled:
-				nav_agent.velocity = new_velocity
-			else:
-				on_velocity_computed(new_velocity)
+	if !nav_agent.is_navigation_finished():
+		var next_path_position: Vector3 = nav_agent.get_next_path_position()
+		var new_velocity =  global_position.direction_to(next_path_position) * move_speed * delta * 60
+		if nav_agent.avoidance_enabled:
+			nav_agent.velocity = new_velocity
+		else:
+			on_velocity_computed(new_velocity)
 	
 	move_and_slide()
 
