@@ -8,8 +8,9 @@
 [ext_resource type="Script" uid="uid://blfr2xb316wb5" path="res://Entities/Combat/Weaponry/Projectile/weapon_projectile.gd" id="4_tmm4x"]
 [ext_resource type="PackedScene" uid="uid://d0jud1gwvjjkp" path="res://Entities/NPC/Hostile/dissolvable.tscn" id="5_7hvoo"]
 [ext_resource type="Resource" uid="uid://bovxsvjk022k8" path="res://Entities/Combat/Weaponry/Projectile/default_projectile.tres" id="5_tmm4x"]
+[ext_resource type="PackedScene" uid="uid://dxi7yq2ax4m52" path="res://menus/hud/weapon_hud.tscn" id="9_7hvoo"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wb7wg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7hvoo"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_wb7wg")
@@ -30,7 +31,7 @@ script = ExtResource("1_tmm4x")
 
 [node name="Dissolvable" parent="." unique_id=1344224893 instance=ExtResource("5_7hvoo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-material_override = SubResource("ShaderMaterial_wb7wg")
+material_override = SubResource("ShaderMaterial_7hvoo")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=909370480]
 collision_layer = 4
@@ -59,6 +60,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -2.1616855)
 avoidance_enabled = true
 radius = 1.0
 use_3d_avoidance = true
+
+[node name="WeaponHud" parent="." unique_id=1797530061 node_paths=PackedStringArray("weapon") instance=ExtResource("9_7hvoo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0337508, 0.9, -1.4276536)
+weapon = NodePath("../WeaponUser/ProjectileWeapon")
 
 [node name="WeaponUser" type="Node" parent="." unique_id=1728510049 node_paths=PackedStringArray("weapon")]
 script = ExtResource("3_mdbcs")

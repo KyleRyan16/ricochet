@@ -7,12 +7,13 @@
 [ext_resource type="Shader" uid="uid://c80s3p4vesk83" path="res://common/effects/dissolve.gdshader" id="3_4rt0j"]
 [ext_resource type="Script" uid="uid://blfr2xb316wb5" path="res://Entities/Combat/Weaponry/Projectile/weapon_projectile.gd" id="4_0hvvw"]
 [ext_resource type="Texture2D" uid="uid://c46xvf1efpphd" path="res://common/effects/perlin_noise.png" id="4_seg3p"]
+[ext_resource type="PackedScene" uid="uid://dxi7yq2ax4m52" path="res://menus/hud/weapon_hud.tscn" id="5_4rt0j"]
 [ext_resource type="Resource" uid="uid://bchltyhfw0omo" path="res://Entities/Combat/Weaponry/Projectile/laser_projectile.tres" id="8_3xgjn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02ohv"]
 height = 1.8
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xgjn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_seg3p"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_4rt0j")
@@ -39,14 +40,18 @@ script = ExtResource("1_02ohv")
 shape = SubResource("CapsuleShape3D_02ohv")
 
 [node name="Dissolvable" parent="CollisionShape3D" unique_id=1344224893 instance=ExtResource("2_3xgjn")]
-material_override = SubResource("ShaderMaterial_3xgjn")
+material_override = SubResource("ShaderMaterial_seg3p")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=877310445]
 transform = Transform3D(0.20421684, 0, 0, 0, -4.371139e-08, -0.20421684, 0, 1, -8.926602e-09, 0, 0.09999992, -1.436191)
 mesh = SubResource("CylinderMesh_5up26")
 
-[node name="ProjectileSpawn" type="Node3D" parent="MeshInstance3D2" unique_id=370264257]
-transform = Transform3D(4.8967557, 0, 0, 0, -4.371139e-08, 1, 0, -4.8967557, -2.1404401e-07, 0, -1.007141, -0.08400265)
+[node name="ProjectileSpawn" type="Node3D" parent="." unique_id=370264257]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 3.5527137e-15, 0, 0, 1, 0, 0.11715472, -2.443332)
+
+[node name="SceneAnchor" parent="ProjectileSpawn" unique_id=318293051 node_paths=PackedStringArray("weapon") instance=ExtResource("5_4rt0j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4140537, -3.308196e-15, 0.9311744)
+weapon = NodePath("../../WeaponUser/ProjectileWeapon")
 
 [node name="AimSolver" type="Node" parent="." unique_id=1083339505]
 script = ExtResource("1_5up26")
@@ -59,6 +64,6 @@ metadata/_custom_type_script = "uid://dor1ai1n7igx0"
 
 [node name="ProjectileWeapon" type="Node" parent="WeaponUser" unique_id=1299432537 node_paths=PackedStringArray("spawn_transform")]
 script = ExtResource("4_0hvvw")
-spawn_transform = NodePath("../../MeshInstance3D2/ProjectileSpawn")
+spawn_transform = NodePath("../../ProjectileSpawn")
 spec = ExtResource("8_3xgjn")
 metadata/_custom_type_script = "uid://blfr2xb316wb5"

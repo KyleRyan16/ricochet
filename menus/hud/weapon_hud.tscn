@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dxi7yq2ax4m52"]
+
+[ext_resource type="Script" uid="uid://bnbirj11y8url" path="res://menus/hud/weapon_hud.gd" id="1_5foqq"]
+
+[sub_resource type="Gradient" id="Gradient_cjirg"]
+offsets = PackedFloat32Array(0.4244186, 0.43313953, 0.70348835, 0.71511626, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0.40784314, 0.40784314, 0.40784314, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5foqq"]
+gradient = SubResource("Gradient_cjirg")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[node name="SceneAnchor" type="Node3D" unique_id=318293051]
+script = ExtResource("1_5foqq")
+
+[node name="Control" type="Control" parent="." unique_id=2067604366]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control" unique_id=1628115956]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 79.0
+fill_mode = 5
+texture_progress = SubResource("GradientTexture2D_5foqq")
