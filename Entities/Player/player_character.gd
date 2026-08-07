@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var pause_menu := $"../../PauseMenu"
+
 @onready var aim_solver : AimSolver = $AimSolver
 @onready var weapon_user : WeaponUser = $WeaponUser
 @onready var mesh : Dissolvable = $CollisionShape3D/Dissolvable
@@ -15,6 +17,8 @@ var is_alive : bool = true
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"):
 		weapon_user.attack()
+	if	event.is_action_pressed("pause_menu"):
+		pause_menu.toggle()
 		
 
 
@@ -29,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	var direction := (Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if !input_dir:
-		World.set_time_scale(0)
+		World.set_time_scale(move_toward(World.get_time_scale(), 0, 0.02))
 	else:
 		World.set_time_scale(move_toward(World.get_time_scale(), input_dir.length(), 0.01))
 	delta *= World.get_time_scale()

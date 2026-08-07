@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dj8jfdiom0xol" path="res://Prototype/geo_cube.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cran6pes5ikt0" path="res://Entities/NPC/Hostile/generic_enemy.tscn" id="4_1bvp3"]
 [ext_resource type="VoxelGIData" uid="uid://dtsux23b4b1eu" path="res://main.VoxelGI_data.res" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://24rau0vmqdqt" path="res://pause_menu.tscn" id="7_272bh"]
 
 [sub_resource type="Environment" id="Environment_1bvp3"]
 background_energy_multiplier = 0.0
@@ -162,3 +163,5 @@ directional_shadow_max_distance = 141.7
 [node name="Path3D" type="Path3D" parent="." unique_id=855929015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.883799, 0, 8.051129)
 curve = SubResource("Curve3D_7mycd")
+
+[node name="PauseMenu" parent="." unique_id=1756726897 instance=ExtResource("7_272bh")]
