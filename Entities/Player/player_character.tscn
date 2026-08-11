@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://c46xvf1efpphd" path="res://common/effects/perlin_noise.png" id="4_seg3p"]
 [ext_resource type="PackedScene" uid="uid://dxi7yq2ax4m52" path="res://menus/hud/weapon_hud.tscn" id="5_4rt0j"]
 [ext_resource type="Resource" uid="uid://bchltyhfw0omo" path="res://Entities/Combat/Weaponry/Projectile/laser_projectile.tres" id="8_3xgjn"]
-[ext_resource type="PackedScene" uid="uid://c16r7urmci7tf" path="res://systems/senses/sense_sight.tscn" id="10_seg3p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_02ohv"]
 height = 1.8
@@ -68,7 +67,3 @@ script = ExtResource("4_0hvvw")
 spawn_transform = NodePath("../../ProjectileSpawn")
 spec = ExtResource("8_3xgjn")
 metadata/_custom_type_script = "uid://blfr2xb316wb5"
-
-[node name="Sight" parent="." unique_id=1165751035 instance=ExtResource("10_seg3p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.78699917, 0)
-subdivisions = 24
