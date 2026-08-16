@@ -29,6 +29,8 @@ func update(movement : Vector3, length : float):
 	update_shapes()
 
 func update_shapes():
+	_length = max(0.01, _length)
+	
 	collider.shape.height = _length
 	collider.shape.radius = min(_length / 2, desired_radius)
 	collider.position.z = _length / 2
