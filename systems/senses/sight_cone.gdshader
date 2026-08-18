@@ -23,29 +23,29 @@ uniform sampler2D noise;
 uniform float noise_size = 1;
 
 vec2 wave(vec2 uv, float time) {
-    return vec2(
-        uv.x + sin(uv.y * waveFrequency * 5.0 + time) * waveAmplitude,
-        uv.y + sin(uv.x * waveFrequency + time) * waveAmplitude
-    );
+	return vec2(
+		uv.x + sin(uv.y * waveFrequency * 5.0 + time) * waveAmplitude,
+		uv.y + sin(uv.x * waveFrequency + time) * waveAmplitude
+	);
 }
 
 void vertex() {
 	if (VERTEX != vec3(0,0,0))
 	{
-        float angle = atan(VERTEX.x, -VERTEX.z);
+		float angle = atan(VERTEX.x, -VERTEX.z);
 
-        float start_angle = -radians(fov) * 0.5;
-        float end_angle = radians(fov) * 0.5;
+		float start_angle = -radians(fov) * 0.5;
+		float end_angle = radians(fov) * 0.5;
 
-        float likeness = (angle - start_angle) / (end_angle - start_angle);
+		float likeness = (angle - start_angle) / (end_angle - start_angle);
 
-        int index = int(round(likeness * float(vertex_count -1)));
+		int index = int(round(likeness * float(vertex_count -1)));
 
-        vec3 vertex_displaced = vertices[index];
+		vec3 vertex_displaced = vertices[index];
 
-        UV *= length(vertex_displaced) / length(VERTEX.xyz);
+		UV *= length(vertex_displaced) / length(VERTEX.xyz);
 
-        VERTEX.xyz = vertex_displaced;
+		VERTEX.xyz = vertex_displaced;
 		
 	}
 }
